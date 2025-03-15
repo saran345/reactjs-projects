@@ -22,7 +22,7 @@ export default function FormVal() {
        const display={};
        if(!data.first.trim()){
           display.first="First is required!"
-       }else if(data.first<5){
+       }else if(data.first.length<5){
         display.first="First name is less than 5"
        }
        if(!data.last.trim()){
@@ -41,7 +41,7 @@ export default function FormVal() {
         display.gender="Select the Gender!"
        }
        if(!data.address.trim()){
-        display.data="Address is required!"
+        display.address="Address is required!"
        }
 
        if(!data.mobile.trim()){
@@ -53,9 +53,10 @@ export default function FormVal() {
 
     };
 
-     const submitData=()=>{
-        if(validate){
-          window.alert="Successfully register!"
+     const submitData=(e)=>{
+      e.preventDefault();
+        if(validate()){
+          window.alert("Successfully register!")
         }
         setData({first: "",
           last: "",
@@ -64,76 +65,89 @@ export default function FormVal() {
           mobile: "",
           gender: "",
           address: ""})
+
+
      }
 
   return (
     <>
 
     <div className="flex p-4 min-h-full items-center justify-center bg-amber-300">
-      <div className="p-6 bg-white w-full max-w-md rounded-lg shadow-lg  text-xl sm:text-2xl md:text-1xl lg:text-xl">
-        <form className="max-w-lg mx-auto space-y-10" onClick={submitData}>
-          <h1 className='text-center'>Students Registration Form</h1>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <label className='text-lg font-medium text-gray-600'>FirstName:</label>
+      <div className="p-6 bg-white w-full max-w-xl rounded-lg shadow-lg  text-xl sm:text-2xl md:text-2xl lg:text-xl">
+        <form className="max-w-lg mx-auto space-y-10" onSubmit={submitData}>
+          <h1 className='text-center text-blue-800 font-semibold text-3xl'>Students Registration Form</h1>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-1'>
+        <label className='text-2xl text-indigo-600 font-medium '>FirstName:</label>
+        <div>
         <input type='text'
          name='first'
          value={data.first}
          onChange={handleChange}
-         className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'
-          />
-          {err.first &&<p className='text-red-600'>{err.first}</p>}
+         className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'
+          />{err.first &&<p className='text-sm text-red-600 '>{err.first}</p>}
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <label className='text-lg font-medium text-gray-600'>LastName:</label>
+        </div> 
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-1'>
+        <label className='text-2xl text-indigo-600 font-medium '>LastName:</label>
+        <div>
         <input type='text'
          name='last'
          value={data.last}
          onChange={handleChange}
-         className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'
+         className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'
           />
-           {err.last &&<p className='text-red-600'>{err.last}</p>}
+           {err.last &&<p className='text-sm text-red-600'>{err.last}</p>}
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <label className='text-lg font-medium text-gray-600'>Email:</label>
+        </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-1'>
+        <label className='text-2xl text-indigo-600 font-medium '>Email:</label>
+        <div>
         <input type='email'
         name='email'
         value={data.email}
         onChange={handleChange}
-        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'/>
-         {err.email &&<p className='text-red-600'>{err.email}</p>}
+        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'/>
+         {err.email &&<p className='text-sm text-red-600'>{err.email}</p>}
         </div>
-        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <label className='text-lg font-medium text-gray-600'>DOB:</label>
-        <input type='date' name='dob' value={data.dob} onChange={handleChange}
-        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'
+        </div>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-1'>
+        <label className='text-2xl text-indigo-600 font-medium '>DOB:</label>
+       <div>
+       <input type='date' name='dob' value={data.dob} onChange={handleChange}
+        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'
         />
-         {err.dob &&<p className='text-red-600'>{err.dob}</p>}
+         {err.dob &&<p className='text-sm text-red-600'>{err.dob}</p>}
+       </div>
         </div>
         <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-        <label className='text-lg font-medium text-gray-600'>MobileNumber:</label>
+        <label className='text-2xl text-indigo-600 font-medium '>MobileNumber:</label>
+        <div>
         <input type='text' name='mobile' value={data.mobile} onChange={handleChange}
-        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'
+        className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'
         />
-         {err.mobile &&<p className='text-red-600'>{err.mobile}</p>}
+         {err.mobile &&<p className='text-sm text-red-600'>{err.mobile}</p>}
+        </div>
         </div>
        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2 items-center'>
-       <label className='text-lg font-medium text-gray-600'>Gender:</label>
+       <label className='text-2xl text-indigo-600 font-medium '>Gender:</label>
         <div className='flex items-center gap-4'>
-          <label className='flex items-center gap-4'>
+          <label className='flex items-center gap-4 text-indigo-600 font-semibold' >
           <input type='radio' name='gender' value="male" checked={data.gender === "male"} onChange={handleChange} className='w-4 h-4' />male
           </label>
-          <label className='flex items-center gap-4'>
+          <label className='flex items-center gap-4 text-indigo-600 font-semibold'>
           <input type='radio' name='gender' value="female" checked={data.gender === "female"}  onChange={handleChange} className='w-4 h-4' />female <br />
           </label>
-          {err.gender &&<p className='text-red-600'>{err.gender}</p>}
+          {/* {err.gender &&<p className='text-sm text-red-600'>{err.gender}</p>} */}
         </div>
        </div>
        <div className='grid grid-cols-1 sm:grid-cols-2 gap-2'>
-       <label className='text-lg font-medium text-gray-600'>Address:</label>
-       <input type='text' name='address' value={data.address} onChange={handleChange}
-       className='w-full text-gray-600 text-lg border rounded-md outline-blue-600'
+       <label className='text-2xl text-indigo-600 font-medium '>Address:</label>
+      <div>
+      <input type='text' name='address' value={data.address} onChange={handleChange}
+       className='w-full text-gray-600 text-lg border rounded-md outline-blue-600 py-1'
        />
-        {err.address &&<p className='text-red-600'>{err.address}</p>}
+        {err.address &&<p className='text-sm text-red-600'>{err.address}</p>}
+      </div>
        </div>
 
          <button type='submit' className='w-full py-3 px-4 tracking-wide rounded-lg text-white bg-blue-600  hover:bg-blue-800 focus:outline-none' >Submit</button>
