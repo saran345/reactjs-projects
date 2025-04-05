@@ -1,7 +1,10 @@
-import { defineConfig } from 'vite'
-import tailwindcss from '@tailwindcss/vite'
-export default defineConfig({
-  plugins: [
-    tailwindcss(),
-  ],
-})
+export default {
+  build: {
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        404: './404.html' // Optional for SPA fallback
+      }
+    }
+  }
+}

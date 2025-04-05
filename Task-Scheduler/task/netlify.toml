@@ -1,0 +1,7 @@
+[build]
+  command = "npm run netlify-build"
+  publish = "dist"
+  functions = "functions"  # Only if you're using Netlify functions
+
+[build.environment]
+  NODE_VERSION = "20"  # Match your local Node version
